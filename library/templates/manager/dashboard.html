@@ -1,0 +1,63 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h2 class="text-primary fw-bold">📚 Library Management Dashboard</h2>
+    <p class="text-muted">Quick actions and insights at your fingertips.</p>
+</div>
+
+<div class="row g-4">
+    <!-- Authors -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h4 class="card-title text-info">👤 Authors</h4>
+                <p class="card-text">Manage author profiles and bios.</p>
+                <a href="{% url 'author-list' %}" class="btn btn-outline-info me-2">View All</a>
+                <a href="{% url 'add-author' %}" class="btn btn-info">+ Add</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Books -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h4 class="card-title text-success">📖 Books</h4>
+                <p class="card-text">Add and manage books in the collection.</p>
+                <a href="{% url 'book-list' %}" class="btn btn-outline-success me-2">View All</a>
+                <a href="{% url 'add-book' %}" class="btn btn-success">+ Add</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Borrow Records -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body text-center">
+                <h4 class="card-title text-warning">📅 Borrows</h4>
+                <p class="card-text">Track borrowed books and return dates.</p>
+                <a href="{% url 'borrow-list' %}" class="btn btn-outline-warning me-2">View All</a>
+                <a href="{% url 'add-borrow' %}" class="btn btn-warning">+ Add</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Export Section -->
+<div class="mt-5 text-center">
+    <h5 class="mb-3">📤 Export Data</h5>
+    <a href="{% url 'export-authors' %}" class="btn btn-dark me-2">Authors</a>
+    <a href="{% url 'export-books' %}" class="btn btn-dark me-2">Books</a>
+    <a href="{% url 'export-borrows' %}" class="btn btn-dark">Borrows</a>
+</div>
+
+<!-- Motivational Quote -->
+{% if random_quote %}
+<div class="mt-5 text-center">
+    <blockquote class="blockquote text-muted fst-italic">
+        “{{ random_quote }}”
+    </blockquote>
+</div>
+{% endif %}
+{% endblock %}

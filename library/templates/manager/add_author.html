@@ -1,0 +1,32 @@
+{% extends 'manager/base.html' %}
+{% load form_filters %}
+
+{% block content %}
+<h2 class="mb-4">Add New Author</h2>
+
+<form method="post" class="card p-4 shadow-sm border-0">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+        <label for="id_name" class="form-label">Name</label>
+        {{ form.name|add_class:"form-control" }}
+        {{ form.name.errors }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_email" class="form-label">Email</label>
+        {{ form.email|add_class:"form-control" }}
+        {{ form.email.errors }}
+    </div>
+
+    <div class="mb-3">
+        <label for="id_bio" class="form-label">Bio</label>
+        {{ form.bio|add_class:"form-control" }}
+        {{ form.bio.errors }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{% url 'author-list' %}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+{% endblock %}

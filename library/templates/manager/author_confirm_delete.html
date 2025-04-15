@@ -1,0 +1,25 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-danger shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-danger">Confirm Delete</h3>
+                <p class="card-text">Are you sure you want to delete this author?</p>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item"><strong>Name:</strong> {{ object.name }}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{ object.email }}</li>
+                    <li class="list-group-item"><strong>Bio:</strong> {{ object.bio }}</li>
+                </ul>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    <a href="{% url 'author-list' %}" class="btn btn-secondary ms-2">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

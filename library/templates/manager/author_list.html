@@ -1,0 +1,51 @@
+{% extends 'manager/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="text-primary">👤 Authors</h2>
+    <a href="{% url 'add-author' %}" class="btn btn-primary">+ Add Author</a>
+</div>
+
+{% if authors %}
+    <div class="list-group shadow-sm">
+        {% for author in authors %}
+            <div class="list-group-item list-group-item-action">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-1">{{ author.name }}</h5>
+                        <p class="mb-1 text-muted"><strong>Email:</strong> {{ author.email }}</p>
+                        <p class="mb-1">{{ author.bio }}</p>
+                    </div>
+                    <div class="text-end">
+                        <a href="{% url 'edit-author' author.id %}" class="btn btn-sm btn-outline-info me-2">✏️ Edit</a>
+                        <a href="{% url 'delete-author' author.id %}" class="btn btn-sm btn-outline-danger">🗑️ Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">No authors found.</div>
+{% endif %}
+
+<!-- Pagination -->
+{% if is_paginated %}
+    <nav class="mt-4 d-flex justify-content-center">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+            <li class="page-item disabled">
+                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+{% endblock %}

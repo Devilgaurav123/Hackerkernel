@@ -1,0 +1,57 @@
+{% extends 'manager/base.html' %}
+{% load form_filters %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="display-4">Add Borrow Record</h2>
+        </div>
+
+        <form method="post" class="shadow-lg p-4 rounded bg-light">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            
+            <div class="mb-4">
+                <label for="id_user_name" class="form-label">User Name</label>
+                <div class="input-group">
+                    {{ form.user_name|add_class:"form-control" }}
+                </div>
+                <div class="text-danger mt-2">
+                    {{ form.user_name.errors }}
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="id_book" class="form-label">Book</label>
+                <div class="input-group">
+                    {{ form.book|add_class:"form-select" }}
+                </div>
+                <div class="text-danger mt-2">
+                    {{ form.book.errors }}
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="id_borrow_date" class="form-label">Borrow Date</label>
+                <div class="input-group">
+                    {{ form.borrow_date|add_class:"form-control" }}
+                </div>
+                <div class="text-danger mt-2">
+                    {{ form.borrow_date.errors }}
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="id_return_date" class="form-label">Return Date</label>
+                <div class="input-group">
+                    {{ form.return_date|add_class:"form-control" }}
+                </div>
+                <div class="text-danger mt-2">
+                    {{ form.return_date.errors }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg w-100">Add Borrow Record</button>
+        </form>
+    </div>
+{% endblock %}
